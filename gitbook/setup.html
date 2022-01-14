@@ -235,29 +235,29 @@
 <p>Due to gitbook-cli depends on older version of Node(\&lt;v.14), hence installing NVM is necessary for easily switch different Node version.</p>
 <h2 id="step-0-installing-nvm">Step 0 Installing NVM</h2>
 <p>To install NVM, remove existing Node and re-install Node after NVM installation.</p>
-<pre><code class="lang-shell"># uninstall existing node if using homebrew
+<pre><code class="lang-sh"><span class="hljs-comment"># uninstall existing node if using homebrew</span>
 $ brew uninstall node
-# install nvm
+<span class="hljs-comment"># install nvm</span>
 $ brew install nvm
 
-# use nvm to install latest node version of v17
+<span class="hljs-comment"># use nvm to install latest node version of v17</span>
 $ nvm install 17
-# install node v14
+<span class="hljs-comment"># install node v14</span>
 $ nvm install 14
-# install node v12
+<span class="hljs-comment"># install node v12</span>
 $ nvm install 12
 
-# switch node version used by NVM
+<span class="hljs-comment"># switch node version used by NVM</span>
 $ nvm use 12
-# check current in-using node
+<span class="hljs-comment"># check current in-using node</span>
 $ nvm list
 </code></pre>
 <h2 id="step-1-install--init-gitbook">Step 1 Install &amp; Init Gitbook</h2>
 <p>Find a Github Repo that you want to create Gitbook, run below command to initialize Gitbook Pages:</p>
-<pre><code class="lang-shell"># installing gitbook-cli
+<pre><code class="lang-sh"><span class="hljs-comment"># installing gitbook-cli</span>
 $ npm install -g gitbook-cli
 
-# init current directory with gitbook-cli
+<span class="hljs-comment"># init current directory with gitbook-cli</span>
 $ gitbook init
 </code></pre>
 <p>Please be noted if there is error like &quot;cb.apply is not a function&quot; in polyfills.js, this might also relates to the version, to resolve the issue, we could commented out those error lines like below:</p>
@@ -273,19 +273,19 @@ $ gitbook init
 <p>Afterwards, there should be one SUMMARY.md file created under current directory, it contains the outline of this gitbook. </p>
 <h2 id="step-2-test-locally--prepare-changes">Step 2 Test Locally &amp; Prepare Changes</h2>
 <p>To view the gitbook page locally, run</p>
-<pre><code class="lang-shell">$ gitbook serve
+<pre><code class="lang-sh">$ gitbook serve
 </code></pre>
 <p>Then go to <em>localhost:4000</em> to view the result page.</p>
 <p>Also, you could modify your gitbook structure now, after everything is ready, you could build and publish your pages via github.</p>
 <p>To pack &amp; commit all necessary files:</p>
-<pre><code class="lang-shell">$ gitbook build
+<pre><code class="lang-sh">$ gitbook build
 
-# copy everything from _book to current folder
+<span class="hljs-comment"># copy everything from _book to current folder</span>
 $ cp -R _book/* .
 
-# add everything for commit
-$ git add . &amp;&amp; git commit -m &quot;commit messages&quot;
-# push to a specific branch, e.g. &quot;gitbook&quot;
+<span class="hljs-comment"># add everything for commit</span>
+$ git add . &amp;&amp; git commit -m <span class="hljs-string">&quot;commit messages&quot;</span>
+<span class="hljs-comment"># push to a specific branch, e.g. &quot;gitbook&quot;</span>
 $ git push
 </code></pre>
 <h2 id="step-3-deploy-onto-github-repo">Step 3 Deploy onto Github Repo</h2>
@@ -334,7 +334,7 @@ $ git push
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3.1 Setup Process","level":"1.3.1","depth":2,"next":{"title":"3.1 References","level":"1.3.2","depth":2,"path":"gitbook/references.md","ref":"gitbook/references.md","articles":[]},"previous":{"title":"3 GitBook","level":"1.3","depth":1,"path":"gitbook/README.md","ref":"gitbook/README.md","articles":[{"title":"3.1 Setup Process","level":"1.3.1","depth":2,"path":"gitbook/setup.md","ref":"gitbook/setup.md","articles":[]},{"title":"3.1 References","level":"1.3.2","depth":2,"path":"gitbook/references.md","ref":"gitbook/references.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"gitbook/setup.md","mtime":"2022-01-14T09:02:49.306Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-01-14T09:03:05.099Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"3.1 Setup Process","level":"1.3.1","depth":2,"next":{"title":"3.1 References","level":"1.3.2","depth":2,"path":"gitbook/references.md","ref":"gitbook/references.md","articles":[]},"previous":{"title":"3 GitBook","level":"1.3","depth":1,"path":"gitbook/README.md","ref":"gitbook/README.md","articles":[{"title":"3.1 Setup Process","level":"1.3.1","depth":2,"path":"gitbook/setup.md","ref":"gitbook/setup.md","articles":[]},{"title":"3.1 References","level":"1.3.2","depth":2,"path":"gitbook/references.md","ref":"gitbook/references.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"gitbook/setup.md","mtime":"2022-01-14T09:17:27.509Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-01-14T09:17:46.391Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

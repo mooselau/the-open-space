@@ -11,7 +11,7 @@ Due to gitbook-cli depends on older version of Node(\<v.14), hence installing NV
 ## Step 0 Installing NVM
 To install NVM, remove existing Node and re-install Node after NVM installation.
 
-```shell
+```sh
 # uninstall existing node if using homebrew
 $ brew uninstall node
 # install nvm
@@ -33,7 +33,7 @@ $ nvm list
 ## Step 1 Install & Init Gitbook
 Find a Github Repo that you want to create Gitbook, run below command to initialize Gitbook Pages:
 
-```shell
+```sh
 # installing gitbook-cli
 $ npm install -g gitbook-cli
 
@@ -59,7 +59,7 @@ Afterwards, there should be one SUMMARY.md file created under current directory,
 ## Step 2 Test Locally & Prepare Changes
 To view the gitbook page locally, run
 
-```shell
+```sh
 $ gitbook serve
 ```
 
@@ -69,7 +69,7 @@ Also, you could modify your gitbook structure now, after everything is ready, yo
 
 To pack & commit all necessary files:
 
-```shell
+```sh
 $ gitbook build
 
 # copy everything from _book to current folder

@@ -4,7 +4,7 @@ The Book on Git Guide: https://git-scm.com/book/en/v2 .
 
 # Squeeze Commits
 
-```shell
+```sh
 # make several commits into one
 $ git reset HEAD^^^ (reset head to the 3rd last commit)
 $ git add (then add all modifications again)
@@ -21,7 +21,7 @@ $ git show --pretty=""  --name-only f7748e47a1a70f004068be4642d04166f47cc692
 
 # Revert/Rollback Commits
 
-```shell
+```sh
 # This will create three separate revert commits:
 git revert a867b4af 25eee4ca 0766c053
 
