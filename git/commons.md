@@ -1,8 +1,8 @@
-# Intro
+# 1 Intro
 
 The Book on Git Guide: https://git-scm.com/book/en/v2 .
 
-# Squeeze Commits
+# 2 Squeeze Commits
 
 ```sh
 # make several commits into one
@@ -19,7 +19,7 @@ $ git log (check the latest commit)
 $ git show --pretty=""  --name-only f7748e47a1a70f004068be4642d04166f47cc692
 ```
 
-# Revert/Rollback Commits
+# 3 Revert/Rollback Commits
 
 ```sh
 # This will create three separate revert commits:

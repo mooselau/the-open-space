@@ -1,14 +1,14 @@
-# Intro
+# 1 Intro
 Here records my own experiences of using Gitbook, based on several docs online.
 
-# Requirements
+# 2 Requirements
 > 1.NPM NVM
 > 2.Gitbook-cli
 
-# Process
+# 3 Process
 Due to gitbook-cli depends on older version of Node(\<v.14), hence installing NVM is necessary for easily switch different Node version.
 
-## Step 0 Installing NVM
+## 3.1 Step 0 Installing NVM
 To install NVM, remove existing Node and re-install Node after NVM installation.
 
 ```sh
@@ -30,7 +30,7 @@ $ nvm use 12
 $ nvm list
 ```
 
-## Step 1 Install & Init Gitbook
+## 3.2 Step 1 Install & Init Gitbook
 Find a Github Repo that you want to create Gitbook, run below command to initialize Gitbook Pages:
 
 ```sh
@@ -56,7 +56,7 @@ And if there is error like below, then it might still has version issue, please 
 
 Afterwards, there should be one SUMMARY.md file created under current directory, it contains the outline of this gitbook. 
 
-## Step 2 Test Locally & Prepare Changes
+## 3.3 Step 2 Test Locally & Prepare Changes
 To view the gitbook page locally, run
 
 ```sh
@@ -81,7 +81,7 @@ $ git add . && git commit -m "commit messages"
 $ git push
 ```
 
-## Step 3 Deploy onto Github Repo
+## 3.4 Step 3 Deploy onto Github Repo
 Go to repo settings -> Pages, in Github Pages Panel, choose Source to the branch that contains our gitbook pages, then "save". After several minutes, gitbook pages will show in provided address.
 
 An interesting change happens here is Github actually creates workflow in the repo for us, for details please check the link in your github repo: https://github.com/mooselau/the-open-space/actions
