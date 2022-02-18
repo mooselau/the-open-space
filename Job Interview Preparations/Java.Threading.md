@@ -5,6 +5,14 @@
 __Thread Status 线程状态__
 NEW, RUNNABLE/BLOCKED/WAITING/TIMED_WAITING, TERMINATED
 
+### ThreadLocal
+
+- 每个线程内部维护了私有的一个 ThreadLocalMap；
+  + 每个 ThreadLocal 在 set(value) 的时候，实际上会新建 entry(this, value) 存放到这个私有的 map 中，其中使用该 ThreadLocal 对象为 key，value 即为传进来的值；
+- 因为 ThreadLocal 以及 ThreadLocalMap 是线程私有的对象，一旦对象交给其他线程，则会丢失内容；
+  + 所以除了 set()，也需要手动在合适的时候使用 remove() 清理掉不用的对象，以避免内存泄漏；
+  + 但也不是必须要 remove()，因为每一个 Entry 其实是一个 WeakReference，在空间不够的时候一定会被清理掉；??
+
 ## ThreadPool 线程池
 
 __Usage 使用注意__
@@ -23,7 +31,7 @@ CorePoolSize, MaximumPoolSize, KeepAliveTime, Unit, BlockingQueue;
 __Reject Execution Handler__
 AbortPolicy(exception if fail), DiscardPolicy(Silently Drop), DiscardOldest, CallerRunsPolicy;
 
-### Blocking Queue
+### Blocking Queue 阻塞队列
 
 Blocking Queue 本身包含较多知识点，拆开来分析。
 
@@ -61,15 +69,16 @@ public ArrayBlockingQueue(int capacity, boolean fair) {}
 - 非公平锁在 ArrayBLQ 中就是意味着直接去抢锁资源而不用排队，但如果抢夺失败则会去排队，存在饥饿问题；
 - 公平锁则是老老实实排队，按顺序分配锁资源；
 
-#### Blocking Dequeue & PriorityBlockingQueue
+#### Blocking Dequeue & Priority BlockingQueue
 
 __Dequeue__
 
-Dequeue 全称 Double-ended Queue，双端队列，队首和队尾都可以进行操作，比如 addFirst(), addLast()，removeFirst(), removeLast()，在 BlockingDequeue 的情况下，可以进行 putFirst(), putLast(), takeFirst(), takeLast() 操作；
+- Dequeue 全称 Double-ended Queue，双端队列，队首和队尾都可以进行操作，比如 addFirst(), addLast()，removeFirst(), removeLast()，在 BlockingDequeue 的情况下，可以进行 putFirst(), putLast(), takeFirst(), takeLast() 操作；
+- Dequeue是非线程安全的，BlockingDequeue 是线程安全的；
 
-__PriorityQueue__
-
-
+__Priority Queue__
+- PriorityQueue 是优先队列，底层使用的是堆(二叉树)实现的结构，默认是小顶堆，可以保证每次操作节点会自动调整树，将最小/最大的数值放到堆顶；
+- PriorityQueue 是非线程安全，PriorityBlockingQueue 则是线程安全的；
 
 #### BlockingQueue 的写法
 
