@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>2 Git · GitBook</title>
+        <title>4.3 Encoding and Character Sets · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="commons.html" />
+    <link rel="next" href="../ghost/" />
     
     
-    <link rel="prev" href="../" />
+    <link rel="prev" href="cyber-security/guomi.html" />
     
 
     </head>
@@ -102,9 +102,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="./">
+        <li class="chapter " data-level="1.2" data-path="../git/">
             
-                <a href="./">
+                <a href="../git/">
             
                     
                     2 Git
@@ -116,9 +116,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" data-path="commons.html">
+        <li class="chapter " data-level="1.2.1" data-path="../git/commons.html">
             
-                <a href="commons.html">
+                <a href="../git/commons.html">
             
                     
                     2.1 Commons
@@ -179,9 +179,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="../computer-science/">
+        <li class="chapter " data-level="1.4" data-path="./">
             
-                <a href="../computer-science/">
+                <a href="./">
             
                     
                     4 Computer Science
@@ -193,9 +193,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="../computer-science/cyber-security/cryptography.html">
+        <li class="chapter " data-level="1.4.1" data-path="cyber-security/cryptography.html">
             
-                <a href="../computer-science/cyber-security/cryptography.html">
+                <a href="cyber-security/cryptography.html">
             
                     
                     4.1 Cryptography
@@ -206,9 +206,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2" data-path="../computer-science/cyber-security/guomi.html">
+        <li class="chapter " data-level="1.4.2" data-path="cyber-security/guomi.html">
             
-                <a href="../computer-science/cyber-security/guomi.html">
+                <a href="cyber-security/guomi.html">
             
                     
                     4.2 Chinese Crypto Algorithm
@@ -219,9 +219,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="../computer-science/encoding-and-character-sets.html">
+        <li class="chapter active" data-level="1.4.3" data-path="encoding-and-character-sets.html">
             
-                <a href="../computer-science/encoding-and-character-sets.html">
+                <a href="encoding-and-character-sets.html">
             
                     
                     4.3 Encoding and Character Sets
@@ -280,7 +280,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >2 Git</a>
+        <a href=".." >4.3 Encoding and Character Sets</a>
     </h1>
 </div>
 
@@ -295,8 +295,19 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="introduction">Introduction</h1>
-<p>This Chapter contains common things in using Git.</p>
+                                <h1 id="encoding-and-character-sets">Encoding and Character Sets</h1>
+<h2 id="what-are-asciiprovounced-&#x2C8;aski-utf-8-utf-16-why-do-we-have-them">What are ASCII(provounced /&#x2C8;aski/), UTF-8, UTF-16? Why do we have them?</h2>
+<p>(editted from this <a href="https://stackoverflow.com/a/53647515" target="_blank">answer</a>)</p>
+<p>ASCII - Software allocates ONLY 8-bit (ONE byte) for a givin character, its decimal value falls below 128. Works well for English.</p>
+<p>UTF-8 - Software allocates 1 to 4 variable 8-bit bytes for a given character. 1 byte, 2 bytes, 3 bytes or 4 bytes are okay in UTF-8. For example, character &apos;A&apos; has decimal value 65, when converts to Binary, its value is 0100 0001. This 8 bits value means it requires only 1 byte to store. However, when storing European chracters, it requires 2 bytes, now ASCII is not enough, so we need UTF-8 here. However, when go for Asian characters, it requires minimum of 2 bytes and maximum of 4 bytes. Even for Emoji, it requires 3 to 4 bytes. In these situations, UTF-8 will solve all your needs. (p.s. 1 byte memory is allocated even for special adopted English characters like &apos;&#xE7;&apos; in a word fa&#xE7;ade.)</p>
+<p>UTF-16 - Software allocates MINIMUM 2 bytes and MAXIMUM of 4 bytes per character. It will not allocate 1 or 3 bytes, and each character is either represented in 16 bits or 32 bits.</p>
+<h3 id="then-why-exists-utf-16">Then why exists UTF-16?</h3>
+<p>Originally, Unicode was 16 bit not 8 bit. Java adopted the original version of UTF-16.</p>
+<p>In a nutshell, you don&apos;t need UTF-16 anywhere unless it has been already been adopted by the language or platform you are working on.</p>
+<p>Java program invoked by web browsers uses UTF-16 but the web browser sends characters using UTF-8.</p>
+<p>see <a href="https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html" target="_blank">ASCII Table</a>
+see <a href="https://stackoverflow.com/questions/2241348/what-is-unicode-utf-8-utf-16" target="_blank">Stackoverflow Qs</a>
+see <a href="http://kunststube.net/encoding/" target="_blank">Kunststube&apos;s article</a></p>
 
                                 
                                 </section>
@@ -324,12 +335,12 @@
 
             
                 
-                <a href="../" class="navigation navigation-prev " aria-label="Previous page: 1 Introduction">
+                <a href="cyber-security/guomi.html" class="navigation navigation-prev " aria-label="Previous page: 4.2 Chinese Crypto Algorithm">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="commons.html" class="navigation navigation-next " aria-label="Next page: 2.1 Commons">
+                <a href="../ghost/" class="navigation navigation-next " aria-label="Next page: 5 Ghost">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -340,7 +351,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"2 Git","level":"1.2","depth":1,"next":{"title":"2.1 Commons","level":"1.2.1","depth":2,"path":"git/commons.md","ref":"git/commons.md","articles":[]},"previous":{"title":"1 Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"git/README.md","mtime":"2022-02-18T10:52:40.939Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-20T06:17:12.735Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"4.3 Encoding and Character Sets","level":"1.4.3","depth":2,"next":{"title":"5 Ghost","level":"1.5","depth":1,"path":"ghost/README.md","ref":"ghost/README.md","articles":[]},"previous":{"title":"4.2 Chinese Crypto Algorithm","level":"1.4.2","depth":2,"path":"computer-science/cyber-security/guomi.md","ref":"computer-science/cyber-security/guomi.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"computer-science/encoding-and-character-sets.md","mtime":"2022-02-18T10:52:40.937Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-20T06:17:12.735Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
