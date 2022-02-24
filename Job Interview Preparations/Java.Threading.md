@@ -28,6 +28,13 @@ __Usage 使用注意__
 __Key Parameters__
 CorePoolSize, MaximumPoolSize, KeepAliveTime, Unit, BlockingQueue;
 
+__Thread Number__
+- 理想情况下，线程数最好是等于CPU 核心数目，但现实情况下，由于CPU存在各种开销：IO 开销，网络延迟，甚至 线程切换开销，所以 __线程数一定是 大于 CPU 核心数目的__；
+- 但是线程数过多，则会有很多线程进入等待运行状态；
+- 理想的线程数量 =  CPU 核心数目 * ( 线程IO时间/线程CPU时间 + 1)
+  + 当IO时间越长的时候，线程数目会越多；当IO时间越短，线程数目越少；
+  + 对于IO密集型服务，线程数目需要很多，对于CPU 计算密集型服务，线程数不需要很多；
+
 __Reject Execution Handler__
 AbortPolicy(exception if fail), DiscardPolicy(Silently Drop), DiscardOldest, CallerRunsPolicy;
 

@@ -11,11 +11,11 @@ Array, LinkedList, (BST) Binary-Search Tree 二叉搜索树, Hashtable;
 Abstract Data Type (ADT): Stack, Queue, List, Set, Map, Tree, \*Graph
 
 
+### Hashtable, Hashmap, Concurrent Hashmap
 
+Hashtable 是 同步的，hashmap 是非线程安全的，chm 是线程安全的
 
-
-
-
+多线程问题，扩容问题
 
 
 

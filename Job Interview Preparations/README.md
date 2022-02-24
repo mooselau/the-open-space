@@ -11,5 +11,7 @@ Here contains all necessary knowledge parts for a job interview.
 |Java Locking|[Click Here](./Java.Locking.md)|
 |Java IO|[Click Here](./Java.IO.md)|
 |JVM / GC|[Click Here](./JVM.GC.md)|
+|Database|[Click Here](./Database.General.md)|
+|Architecture|[Click Here](./Architecture.General.md)|
 |Design Pattern|[Click Here](./Design.Pattern.md)|
 |Algorithms|[Click Here](./Algorithms.md)|
