@@ -1,5 +1,7 @@
-# Java Developer Job Review Links
-Links that are necessary to go over before entering interviews:
+# Tech Review Links
+
+Links that are goods to go over before entering interviews:
+
 * Java 
     - Java Core
         + Locks

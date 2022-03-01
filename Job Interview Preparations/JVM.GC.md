@@ -7,11 +7,14 @@
 --------------- -------------------------------
 | Heap        | | JVM Stack | | Native Stack  |
 --------------- -------------------------------
-| Method Area | | Program Counter             |
+| Method Area | | Program Counter Register    |
 --------------- -------------------------------
 ```
-- 左侧属于 线程共享区域，右侧属于 线程私有区域；
-- 方法区 还有 常量池 (Constants Pool);
+- 左侧属于 线程共享区域，右侧属于 线程私有区域;
+- 方法区 还包含 常量池 (Constants Pool)，类信息 (Class info);
+- JVM Stack 包含本地变量 local vars；
+- Native Stack 包含 原生方法和变量；
+- Program Counter Register 程序计数器，包含 线程需要执行的下一行代码或者指令；
 
 - JVM 结构
   + JVM 参数 -Xms 最小内存，-Xmx 最大内存，-Xx: +UseConcurrentMarkSweepGC 使用 CMS GC

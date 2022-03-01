@@ -1,5 +1,13 @@
 # Java General / Java 综合
 
+## Java Characteristics
+
+__Encapsulation 封装__
+
+__Inheritance 继承__
+
+__Polymorphism 多态__
+
 ## Java Premitives
 
 - Java 的八大原始数据类型包括：byte(1), short(2), int(4), long(8); float(4), double(8); boolean, char(2);
@@ -8,7 +16,10 @@
 > 8 bits 最小是 0000 0000(16进制 00), 最大是 1111 1111(16进制 FF)
 > 所以在 16进制的 字节流文件中，两个字符表示一个字节，如果是纯 2进制，则8个字符表示一个字节；
 
+- 上下限问题，以 Integer 举例，大小4个字节，共 32bit，二进制表示可能性 2^32 个；
+  + 意味着，无符号范围 0 ~ 2^32 - 1 个值，有符号范围 -2^31 ~ 2^31 - 1 个值 (减去的1 都是给 0的);
 - Integer 的 MAX_VALUE +1 会溢出 成 MIN_VALUE;
+- 不要用 float, double 表示精确的含小数点的值；
 
 ### Java String
 
@@ -31,6 +42,12 @@ __Final 终态化__
 使用 final 意味着变量在第一次赋值之后不可更改，对象不可renew，方法不可重写，对象类不可继承；
 
 > fanalize() 类似 System.gc()，是手动触发 JVM 系统GC(不一定会立即执行)，但一般不需要手动调用。
+
+__Volatile__
+针对共享变量，可以确保所有对该变量的修改可以立即刷新到主存；
+
+- 在运行过程中，写优先于读动作；
+- 有序性，禁止指令重排序(JVM 的优化措施);
 
 ## Java Interfaces
 

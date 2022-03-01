@@ -42,7 +42,7 @@ lock() vs lockInterruptbly()
 
 ### vs Synchronized 同步锁
 
-- ReentrantLock 的出现一定程度上是为了弥补 Synchronized 同步锁的不足；
+- ReentrantLock 的出现一定程度上是为了弥补 Synchronized 同步锁的不足，是高级锁，是对 sync 内置锁的补充和扩展；
 - 等待打断，possible to interrupt a thread waiting for a lock;
 - 无限时等待，possible to attempt to acquire a lock & without being willing to wait for the lock forever;
 - 代码风格，possible to not use block style; (不用写块状代码)

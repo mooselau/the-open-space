@@ -22,6 +22,7 @@ __Usage 使用注意__
 
 - 顶层 Executor 只包含execute()，ExecutorService 开始引入 submit();
 - execute(Runnable) 和 submit(Callable) 入参不一样，同时 submit() 还有任务返回值;
+  + 使用 submit()，Callable 会包装成 FutuerRunnable，以方便可以作为 Runnable 执行 execute() 方法，另一方面 Future 对象可以用于返回结果；
   + 使用 submit() 会返回 Future 类，通过 Future.get() 可以拿到返回值，但是会阻塞线程;
   + 建议使用 Future.isDone() 来判断执行完成情况，之后再采用 get() 拿到返回值;
 
