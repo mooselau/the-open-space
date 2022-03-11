@@ -58,6 +58,17 @@ __Serializable 接口__
 
 > 反序列化往往会从父类开始，所以父类对象最好提供无参构造器，以防止反序列化失败；
 
+__default implementation 接口默认实现__
+
+- Java 对接口提供了默认实现的功能，但不能滥用；
+  + 比如不同的接口 Bar, Baz 都提供了同一个名字的方法 defaultCommon() ，也都提供了默认实现（但实现逻辑不同），如果类同时实现了这两个接口，这时候就编译就会报错；
+  + 解决办法可以是在新的实现类中，使用 @override 来重写 defaultCommon();
+- Best Practice 是只有在需要升级接口但是又同时要向下兼容老接口的时候使用 defaut 实现；
+
+### Stream API
+
+- 流式处理接口主要用在 Collection 上面，具体可以见 [Java Collection](./Java.Collection.md);
+
 ### Functional 功能接口
 
 ??

@@ -18,6 +18,7 @@ Here contains all necessary knowledge parts for a job interview.
 |Topic|Link|
 |-|-|
 |Database|[Click Here](./Database.General.md)|
+|Middleware|[Click Here](./Middleware.General.md)|
 
 ### CICD & INFRASTRUCTURE
 |Topic|Link|
@@ -30,3 +31,4 @@ Here contains all necessary knowledge parts for a job interview.
 |Architecture|[Click Here](./Architecture.General.md)|
 |Design Pattern|[Click Here](./Design.Pattern.md)|
 |Algorithms|[Click Here](./Algorithms.md)|
+|Additional|[Click Here](./Additional.General.md)|

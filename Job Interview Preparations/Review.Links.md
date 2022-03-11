@@ -85,3 +85,6 @@ Links that are goods to go over before entering interviews:
         + Sorting, see [link](https://www.cnblogs.com/onepixel/articles/7674659.html)
         + 最大堆/最小堆, see [link](https://www.jianshu.com/p/62b651797ad8)
 
+* Google Related
+    - TCP 三次握手 https://www.jianshu.com/p/beb803542e0c
+    - OSI 七层/ TCP/IP 五层模型 https://www.cnblogs.com/qishui/p/5428938.html

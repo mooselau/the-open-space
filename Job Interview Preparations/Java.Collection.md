@@ -4,11 +4,37 @@
 - A: "==" 用来比较原始数据的值，和对象数据的内存地址 Object References，equals 可以用来比较对象的值，一般对于自定义对象，都是十分建议重写 equals() 和 hashcode() 方法的；
   + 自定义对象在使用 集合类的使用，尤其是 Hashtable 这种集合类，hashcode 会被用来查询 Bucket，之后会通过 equals() 来判断是否和 Bucket 内部的元素重复，不重复才会放到集合中;
 
+- Collection 是接口，Collections 是工具类；
+- Java Collection 的主要实现类型有 List，Set，注意 Map 不继承自 Collection；
+
+## Stream Pipeline 流式处理
+
+- 主要针对 Collection, List, Set 来使用；
+- 处理分为：source, intermediate operations, terminal operations;
+  + intermediate operations 只有在 terminal operation存在并且执行的时候才会执行，这称为 Lazy invocation;
+- - Stream() 是逐个处理，parallelStream() 是并行处理，不保证顺序，但同时注意不能随意插入或者删除元素；
+
 ## Data Structure 基本数据结构
 
 Array, LinkedList, (BT) Binary-tree 二叉树, Hashtable;
 
 Abstract Data Type (ADT): Stack, Queue, List, Set, Map, Tree, \*Graph
+
+### List, Set
+
+__List__
+
+- 常见的 List 有 ArrayList, LinkedList；
+  + 其中 ArrayList 需要明确长度，但实际上会根据容量自动 grow() x2扩容；
+  + LinkedList是无界的，双向链表；
+- 不太常见的 Vector 底层是一个链表结构，同时是线程安全的，Stack 是 Vector的一个子类；
+
+__Set__
+
+- 常见的 Set 有 Hashset, TreeSet;
+- Hashset 是典型的无序、唯一的元素集合，底层使用 HashMap 来实现的，其中每次添加元素的 put(value, PRESENT) 的 key 是当前元素，value 则类似占位符--当前对象本身（基本无意义）；
+- TreeSet 是有序的元素集合，底层是使用了 红黑树来实现的；
+- 对于 Set 集合，如果需要 O(1) 的增删查，则可以使用 Hashset，如果需要进行有序遍历，则可以转换成 Treeset 来使用；
 
 ### Hashtable, Hashmap, Concurrent Hashmap
 
@@ -26,9 +52,15 @@ Abstract Data Type (ADT): Stack, Queue, List, Set, Map, Tree, \*Graph
 - >moveRootToFront(tab, balanceInsertion(root, x));
 - Hashtable 的新节点插入是 头插法；
 
-Hashtable 是 同步的，hashmap 是非线程安全的，chm 是线程安全的
+- Hashmap 快但是非线程安全，Hashtable 慢但是线程安全；
+  + Hashmap 和 Hashtable 查找最快 O(1) -- 即 hash() 之后的bucket 直接就是元素，最慢情况下，Hashtable 的bucket 中是长链表需要遍历，这时候是 O(n)，但是 Hashmap 在链表转换成 红黑树之后，可以达到 O(logn);
+  
+__ConcurrentHashmap__
 
-?? TreeMap 与 TreeSet 是有Order的
+- CHM 也是线程安全的，在 JDK 1.8 之前，使用 segment 和 ReentrantLock 实现 分段锁；
+- 在 JDK 1.8，使用 CAS 和 Synchronized 来实现线程安全；
+  + 具体说来，如果 hash() 之后 当前bucket是空的，则通过 CAS 来直接操作当前 bucket，否则 会通过 synchronized 来锁住当前 tabAt() 得到的 tab (? 我的理解，就是当前bucket 内容)，之后遍历找到目标元素；
+  + 从 ReentrantLock 到 Synchronized 的变化，也可能意味着 使用ReentrantLock 会带来风险，使用 Sync 会降低并发问题带来的风险；
 
 ### Binary-Tree 二叉树
 
@@ -117,7 +149,7 @@ Java 中的 TreeSet，TreeMap 使用了红黑树，从而保证了时间复杂�
 
 #### \*RedBlack Tree 红黑树
 
-红黑树是二叉搜索树的典型应用，它是一种自平衡的树，目的是为了保持高效的查询/搜索效率，在 Java 中主要用在 HashMap, TreeSet, TreeMap 中。
+红黑树是二叉搜索树的典型应用，它是一种自平衡的树，目的是为了保持高效的查询/搜索效率，在 Java 中主要用在 __HashMap__, __TreeSet__, __TreeMap__ 中。
 
 红黑树的建立和维护需要满足以下条件：
 - 红黑树的节点要么是黑色，要么是红色；
@@ -155,4 +187,10 @@ public class TreeNode {
   + B树 查询一个节点，会通过查询 中节点-左节点-回到中节点-右节点-回到中节点-回到父节点-下一个兄弟节点-等等 顺序来查询，虽然因为树结构提高了查询效率，但是因为每一个节点都是数据节点（读取磁盘），所以 IO 消耗依然比较大；
   + B+树 所有的非叶子节点都是索引节点，所以可以不仅拥有高效查询效率，同时也大大降低读取数据节点，减少了IO，同时，B+树 的数据节点是有指针连接的，可以直接片段读取数据，更加提高了读取效率；
     * 这是为什么 B+ 树更适合做 __数据库索引__；
-- 更详细的信息可以参考这篇博客:[数据结构之B树与B+树](https://www.jianshu.com/p/cf7dba86c391)
+- 更详细的信息可以参考这篇博客: [数据结构之B树与B+树](https://www.jianshu.com/p/cf7dba86c391)
+
+## Atomic 类型
+
+- 最核心的就是 CompareAndSet() 方法，底层是使用 unsafe.compareAndSwap();
+
+
