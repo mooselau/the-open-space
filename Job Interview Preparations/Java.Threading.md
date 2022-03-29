@@ -5,6 +5,13 @@
 __Thread Status 线程状态__
 NEW, RUNNABLE/BLOCKED/WAITING/TIMED_WAITING, TERMINATED
 
+__Thread Interrupt 线程中断__
+
+- 线程中断主要有两种场景：主动中断 Active Interruption ，被动中断 Passive Interruption；
+- 主动中断一般发生在调用 Thread.interrupt()，被动中断可以发生在线程销毁的时候；
+
+>注意 _Thread.interrupted()_ 会检查当前中断标志 同时 会 __清除中断标志__，如果仅仅需要检查中断标记，可以考虑使用 _Thread.isInterrupted()_ 来判断。
+
 ### ThreadLocal
 
 - 每个线程内部维护了私有的一个 ThreadLocalMap；

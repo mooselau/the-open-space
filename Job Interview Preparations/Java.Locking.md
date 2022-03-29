@@ -101,6 +101,41 @@ __lockInterruptbly()__
 - 无限时等待，possible to attempt to acquire a lock & without being willing to wait for the lock forever;
 - 代码风格，possible to not use block style; (不用写块状代码)
 
+__Lock & Wait__
+
+- 注意 Object.wait() 和 Condition.await() 是有区别的；
+- 一般来说，Object.wait() 和 Object.notify()/notifyAll() 连用，类似地，Consition.await() 和 Condition.signal()/signalAll() 连用；
+
+- 用法上，Object.wait() 经常用在一个loop中：
+```java
+synchronized(mutex) {
+    while(volatile flag) {
+        mutex.wait();
+    }
+}
+```
+
+类似地，Condition.await() 经常用在 loop 和 try-catch block 中：
+```java
+lock.trylock();
+try {
+    while(volatile flag) {
+        condition.await();
+    }
+} finally {
+    lock.unlock();
+}
+
+```
+
+__Wait() & sleep()__
+
+Apparently, wait() belongs to Object classes, however, sleep() belongs to thread. 
+
+Another difference is that wait() gives up its locks and resources while sleep() does not.
+
+>wait() will let current thread give up its lock and release system resources like CPU to hang for a while until it is been notified.
+
 ### ReentrantLock vs ReentrantReadWriteLock
 ??
 

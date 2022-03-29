@@ -4,7 +4,33 @@ SpringBoot 本身可以考察的内容比较多，但由于它只是 Java 成熟
 
 ## IoC 容器
 
+__BeanFactory & ApplicationContext__
+
+- BeanFactory 是SpringBoot中的顶层的接口，是工厂类，主要提供对 Bean 的操作接口，包括各种 GetBean() by name 或者 by type，为Sprng 管理Bean，依赖注入和生命周期提供了支持；
+  + GetBean() 作为最重要的方法之一，也是依赖注入 DI 的重要步骤，如 @Autowired
+- ApplicationContext 是对 BeanFactory 进行了扩展，并且支持了更高级的功能，比如：
+  + 消息国际化接口 MessageSource
+  + 资源模式解析接口 ResourcePatternResolver
+  + 等等
+
 __Bean Lifecycle__
+
+- Spring 初始化 Bean的顺序：__资源定位__ @ComponentScan，__Bean 定义__ - 保存到 Bean Definition 中，__发布 Bean 定义__ - IoC 容器载入 Bean 定义，___实例化___ - 创建 Bean 的实例对象，__依赖注入__ - 如 @Autowired；
+- Bean 的生命周期主要涉及到的接口和注解是：(按顺序排列)
+  + BeanNameAware 接口的 setBeanName() 方法
+  + BeanFactoryAware 接口的 setBeanFactory() 方法
+  + __ApplicationContextAware__ 接口的 setApplicationContext() 方法
+  + BeanPostProcessor 接口的 postProcessBeforeInitialization() 方法
+    * 注意这个是对全局 Bean 生效
+  + __@PostConstruct__ 自定义初始化方法
+  + __InitializingBean__ 接口的 afterPropertiesSet() 方法
+  + BeanPostProcessor 接口的 postProcessAfterInitialization() 方法
+    * * 注意这个是对全局 Bean 生效
+  + Bean 正常生存期
+  + __@PreDestroy__ 自定义销毁方法
+  + DisposableBean 接口的 destroy() 方法
+  
+- 了解Bean的生命周期可以帮助，在特定情况下 统一处理 Bean的 自定义初始化和小会的方式；
 
 __Bean Type__
 

@@ -22,15 +22,13 @@ __Type__
 唯一索引 unique index
 主键索引 primary index
 全文索引 fulltext index
-组合索引 group?? index
+组合索引 group index ?
 
 > 如果对数据列 A B C 设置组合索引，那么生效的仅仅会是 ABC, AB, A，对 AC 是不生效的。
 
 __Theory__
 
-常见的实现原理有：B Tree, B+ Tree.
-
-???
+常见的实现原理有：B Tree, B+ Tree，具体可以参考[这篇内容](./Java.Collection.md)。
 
 __When and When NOT__
 

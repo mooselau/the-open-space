@@ -21,3 +21,7 @@ ShapeMaker.drawSquare();
 - 往往是屏蔽 Legacy System，同时又为了兼容新系统或者新方案而做的接口设计；
 
 > Factory Pattern 和 Facase Pattern 最大的区别，就是 Factory 用来生产 相似的 实例，但 Facade 用来执行 相似的 动作；
+
+## Decoration Pattern 装饰器模式
+
+典型用例，比如IO操作：BufferedInputStream(FileInputStream(File)).
