@@ -57,7 +57,7 @@ FairSync.lock() ---> AQS.acquire(1) --> FairSync.tryAcquire(1);
   + acquireQueued() 就是 loop and check，循环检查当前节点是否可以获取锁(tryAcquire(1))，如果成功则结束，否则 自我park/睡眠，等待 unlock() 过程的唤醒;
 
 ```text
-NonfairSync.lock() ---> AQS.compareAnsSetState()
+NonfairSync.lock() ---> AQS.compareAndSetState()
                 or ---> AQS.acquire(1) ---> NonfairSync.tryAcquire(1)
 ```
 - 非公平锁 NonfairSync.lock() 会立即 CAS 抢占 state 为0 时候的锁，如果成功则会设置 占有线程并结束；
@@ -77,10 +77,10 @@ unlock() ---> Sync.release() ---> AQS.release() ---> ReentrantLock.tryRelease()
 ```
 - unlock() 其实内部在调用 AQS.release()，进而调用 ReentrantLock.tryRelease();
   + 检查当前线程是不是已经获得了锁，如果当前线程在非法release 则会报错:
-    * >if currentThread is exclusiveOwnerThread, then throw exception
+    * >if currentThread is NOT exclusiveOwnerThread, then throw exception
   + 检查状态位 state c, 在减去了当前 release(1) 之后，是否等于0:
     * >if getState() - releases == 0, then set free and non exclusiveOwnerThread
-    * 如果等于 0，意味着当前线程 已经不持有这把锁了，会把设置 boolean free，同时将占有线程设置成 null(表示 无线程占有)；
+    * 如果等于 0，意味着当前线程 已经不持有这把锁了，会设置 boolean free，同时将占有线程设置成 null(表示 无线程占有)；
   + 设置新的状态位 state c，同时返回变量 free；
 - 在 tryRelease() 成功之后，会通过 unparkSuccessor() 唤醒它之后的节点进行获取锁；
 

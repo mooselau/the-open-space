@@ -95,8 +95,8 @@ Balanced Binary-tree 平衡二叉树的条件是：d-1 的深度的孩子全部�
 __BT 的遍历__
 
 因为可以比较，所以可以按照左中右，中左右，左右中这样的顺序进行遍历输出，同时递归方法上也满足使用 树 Tree 的遍历方式进行遍历：
-- __广度优先__ Breadth-first seach，每层进行遍历，之后在进行下层遍历，可以使用 Stack 来实现；
-- __深度优先__ Depth-first search，每次对子树进行遍历，之后在进行父节点遍历，可以使用 Queue 来实现；
+- __广度优先__ Breadth-first seach，每层进行遍历，之后在进行下层遍历，可以使用 Queue 来实现；
+- __深度优先__ Depth-first search，每次对子树进行遍历，之后在进行父节点遍历，可以使用 Stack 来实现；
 
 #### BST Binary-search tree 二叉搜索树
 

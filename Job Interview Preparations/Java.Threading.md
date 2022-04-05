@@ -16,16 +16,16 @@ __Thread Interrupt 线程中断__
 
 - 每个线程内部维护了私有的一个 ThreadLocalMap；
   + 每个 ThreadLocal 在 set(value) 的时候，实际上会新建 entry(this, value) 存放到这个私有的 map 中，其中使用该 ThreadLocal 对象为 key，value 即为传进来的值；
-- 因为 ThreadLocal 以及 ThreadLocalMap 是线程私有的对象，一旦对象交给其他线程，则会丢失内容；
   + 所以除了 set()，也需要手动在合适的时候使用 remove() 清理掉不用的对象，以避免内存泄漏；
   + 但也不是必须要 remove()，因为每一个 Entry 其实是一个 WeakReference，在空间不够的时候一定会被清理掉；??
+- 因为 ThreadLocal 以及 ThreadLocalMap 是线程私有的对象，一旦对象交给其他线程，则会丢失内容；
 
 ## ThreadPool 线程池
 
 __Usage 使用注意__
 
 > 顶层接口 Executor <- 二层接口 ExecutorService <- 三层抽象 AbstractExecutorService <- 四层实用类 ThreadPoolExecutor;
-> Executors 是工厂类，用来生成 FixedThreadPool(), CacedThreadPool(), ScheduledThreadPool 等等;
+> Executors 是工厂类，用来生成 FixedThreadPool(), CachedThreadPool(), ScheduledThreadPool 等等;
 
 - 顶层 Executor 只包含execute()，ExecutorService 开始引入 submit();
 - execute(Runnable) 和 submit(Callable) 入参不一样，同时 submit() 还有任务返回值;
@@ -50,7 +50,7 @@ AbortPolicy(exception if fail), DiscardPolicy(Silently Drop), DiscardOldest, Cal
 
 Blocking Queue 本身包含较多知识点，拆开来分析。
 
-Blocking Queue 四大类实现: ArrayBlockingQueue, LinkedBlockingQueue, LinkedBlockingDequeue, PriorityBlockingQUeue。
+Blocking Queue 四大类实现: ArrayBlockingQueue, LinkedBlockingQueue, LinkedBlockingDequeue, PriorityBlockingQueue。
 
 BlockingQueue 不存在扩容问题，它们会直接返回 FALSE 或者报错。
 

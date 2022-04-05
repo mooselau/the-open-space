@@ -8,7 +8,7 @@ __Inheritance 继承__
 
 __Polymorphism 多态__
 
-## Java Premitives
+## Java Primitives
 
 - Java 的八大原始数据类型包括：byte(1), short(2), int(4), long(8); float(4), double(8); boolean, char(2);
 
@@ -24,9 +24,9 @@ __Polymorphism 多态__
 ### Java String
 
 ||StringBuilder|StringBuffer|
-|-|-|-|-|
+|-|-|-|
 |Speed      |Fast     |Slow|
-|Thread-Safe|Not Safe |Safe|
+|Thread-Safe|Not Safe |Safe (synchronized)|
 
 ## Java Keywards
 
@@ -82,9 +82,9 @@ __default implementation 接口默认实现__
 - Atomic 相关类主要使用 CompareAndSet(A, B) 即 CAS 来完成类似原子操作，比如 Atomic Integer;
   + CAS 有 "ABA" 问题，解决办法是引入版本号；
 
-
 ## Java Reflection 反射
 
 - 通过反射，可以基本得到所有需要的 class 类信息，常用的方法有 class.forName() 用来获得类，Method.invoke() 用来调用方法；
 - 除此以外，还可以获得修饰符，以及注解等等；
 - 使用反射可以逃避范型检查；
+- 

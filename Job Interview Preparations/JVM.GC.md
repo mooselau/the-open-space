@@ -21,7 +21,15 @@
 
 ### JMM Java Memory Model Java 内存模型
 
-？？？
+- Happens-before 原则
+  + 比如 线程的 start() 一定在线程任何其他操作之前进行，还比如，同一个线程中 A操作在 B操作之前，B操作在 C操作之前，那么A操作一定在C操作之前 等等；
+  + 当两步操作之间没有 happens-before 的关系的时候，那么 JVM在运行的时候就可能会对他们进行 __指令重排序__;
+- 内存模型中，每个线程除了拥有独立的 线程栈，也拥有自己独立的 CPU 缓存区；
+  + 线程在工作的时候会将需要的参数变量从 主存中拷贝到自己私有的缓存区进行高效工作；
+  + 当两个线程各自拷贝了一个共享变量到缓存进行工作的时候，就可能会出现 读写不可见 的冲突；
+- Volatile 关键字可以确保 JVM 对该变量的操作上下文不会发生重排序，并且对该变量的写操作 一定优先于 读操作；
+  + 另外，使用 volatile 修饰的变量可以确保 所有的线程在该变量被修改的时候都看到一致的结果；
+- 更详细的解释可以参考[这篇文章](https://www.jianshu.com/p/1c704d027e1e)
 
 ## Garbage Collection GC 垃圾回收器
 
@@ -145,3 +153,86 @@ GC Roots有：
 强引用，弱引用，虚引用，影子引用？？
   
 ？？ 测试 weakReferences
+
+## JVM ClassLoader 类加载器
+
+>注意，这里讨论的主要针对于 JDK<=8 的版本
+
+JVM 在启动的时候需要加载各个类，有些类是 JVM 自身的类，有些是 JVM扩展类，还有些是应用所定义的类，为了区别加载这些类，JVM 支持了多种类加载器。
+
+```text
+Bootstrap Classloader
+|
+Extension Classloader
+|
+Application Classloader
+|
+*User Classloader
+```
+- 其中，Boostrap Classloader 主要负责加载 JAVA_HOME/lib 下的 \*.jar 和 \*.class，包括 rt.jar, resource.jar, charset.jar 等等;
+- Extension Classloader 主要负责加载 JAVA_HOME/lib/ext 下的 \*.jar 和 \*.class;
+- Application Classloader 主要负责加载当前应用 classpath 下的所有类 \*.class;
+- * User Classloader 是用户自定义的 类加载器，可以加载指定路径的 class 文件;
+
+如上所示，加载器之间存在上下级关系，加载过程使用双亲委派模型。
+
+### Parent-Delegation Model 双亲委派模型
+
+双亲委派 或者 父类委派 模型指的是，当需要加载一个类的时候，当前的类加载器会先调用父类加载器尝试加载，如果加载失败，则会使用自身加载器对该类进行加载。
+
+比如当应用启动的时候，需要加载 String.class，这时候 Application Classloader 会先调用父类加载器 即 Extension Classloader 进行加载，而 Extension Classloader 会继续调用它的父类加载器 Bootstrap Classloader 进行加载，由于 String.class 正好就是在 rt.jar 中的，需要 Bootstrap Classloader 来加载的，所以 Boostrap Classloader 可以正常加载 String.class 进而不需要 Extension Classloader 和 Application Classloader 来进行加载；如果这时候 需要加载应用定义的 MyService.class 类，这时候也一样，会从 Application Classloader 到 Extension Classloader 再到 Boostrap Classloder 一层层申请加载，但都会失败(他们会报 ClassNotFound Exception，意味着加载失败)，这时候子类就开始尝试加载，最终 Application Classloader 因为可以在 classpath下找到这个类，故而会加载成功。
+
+这段逻辑可以尝试在 ClassLoader::loadClass() 中看到。
+
+```java
+public abstract class ClassLoader {
+  protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException
+  {
+    synchronized (getClassLoadingLock(name)) {
+        // First, check if the class has already been loaded
+        if (c == null) {
+            long t0 = System.nanoTime();
+            try {
+                if (parent != null) {
+                    c = parent.loadClass(name, false);
+                } else {
+                    c = findBootstrapClassOrNull(name);
+                }
+            } catch (ClassNotFoundException e) {
+                // ClassNotFoundException thrown if class not found
+                // from the non-null parent class loader
+            }
+
+            if (c == null) {
+                // If still not found, then invoke findClass in order
+                // to find the class.
+                long t1 = System.nanoTime();
+                c = findClass(name);
+            }
+        }
+        if (resolve) {
+            resolveClass(c);
+        }
+        return c;
+    }
+  }
+}
+```
+
+### 委派模型的问题和解决办法
+
+双亲委派模型对于一些特殊情况就非常不适用，这时候就需要 违背 双亲委派模型来实现。
+
+- 当需要定义同名类实现自定义功能的时候，往往因为父类加载器提前加载了同名类，而导致自身的类加载失败
+
+如果可以实现自身的类加载器，都先加载自身的类，失败的情况下，再去正常走 双亲委派加载，就没问题了。
+
+- 当需要实现目前很多 IDE 的热插拔功能的时候，需要在服务运行过程中实现重新加载，而委派模型只能在启动的时候加载
+
+只有实现自定义的类加载器，才可以在运行过程中不断刷新 .class 字节码并重新加载类。
+
+- 当需要通过 SPI 调用第三方库的时候，比如在项目启动的时候和 MySQL 建立连接
+
+由于在系统启动的时候就会通过 父类加载器 对数据库连接进行加载，但是 MySQL 的驱动在第三方的类库中，往往出现在 classpath下面，所以 在 正常双亲委派到 Bootstrap Classloader 进行加载 Driver 的时候，再去实现新的 ThreadContextClassLoader 来指定加载特定的 classpath 下的 第三方驱动，而不是让 bootstrap classloader 加载 (这样反而会由于在核心类库找不到而加载失败)。
+
+更多分析可以参考链接[双亲委派模式](https://www.jianshu.com/p/5e0441cd2d4c)。
