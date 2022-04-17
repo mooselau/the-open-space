@@ -75,10 +75,10 @@ __CMS GC__
 全称 ConcurrentMark&Sweep GC，并行标记清除 GC；
 
 过程主要是：
-initial mark (初次标记 stop-the-world)
-resume execution
-remark (再标记)
-sweep (清除)
+- initial mark (初次标记 stop-the-world)
+- resume execution
+- remark (再标记)
+- sweep (清除)
 
 比较主流的 GC 过程，STW Event 比较短；
 
@@ -150,8 +150,18 @@ GC Roots有：
 
 ### Reference Types in Java Java 四大引用类型
 
-强引用，弱引用，虚引用，影子引用？？
-  
+__Strong Reference 强引用__
+Object obj = new Ojbect() ，就是一个强引用，JVM在内部不足时，宁愿抛出OOM也不会清除掉强引用；
+
+__Soft Reference 软引用__
+软引用，就是在内存空间不够的时候会进行回收和清除；
+
+__Weak Reference 弱引用__
+而弱引用，就是当一个对象用弱引用指向它时，GC不论当前JVM空间是否足够，都(可能)会进行回收；
+
+__Phantom Reference 虚引用__
+而虚引用，就是在任意时间都可能被GC回收的类型，一般用来跟踪GC的活动的。另外，软引用，弱引用和虚引用在建立的时候都需要放入一个引用队列(ReferenceQueue)中方便JVM进行存储和清除。
+
 ？？ 测试 weakReferences
 
 ## JVM ClassLoader 类加载器
@@ -172,7 +182,7 @@ Application Classloader
 - 其中，Boostrap Classloader 主要负责加载 JAVA_HOME/lib 下的 \*.jar 和 \*.class，包括 rt.jar, resource.jar, charset.jar 等等;
 - Extension Classloader 主要负责加载 JAVA_HOME/lib/ext 下的 \*.jar 和 \*.class;
 - Application Classloader 主要负责加载当前应用 classpath 下的所有类 \*.class;
-- * User Classloader 是用户自定义的 类加载器，可以加载指定路径的 class 文件;
+- User Classloader 是用户自定义的 类加载器，可以加载指定路径的 class 文件;
 
 如上所示，加载器之间存在上下级关系，加载过程使用双亲委派模型。
 

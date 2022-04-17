@@ -21,3 +21,44 @@
 
 - S(Situation), T(Task), A(Action), R(Result);
 - 针对回顾之前的某段经历，可以采取 STAR 方法来有逻辑和组织的分析事件；
+
+## HTTP 相关
+
+HTTPS 相比 HTTP 多出了 SSL/TLS的安全部分，使用了国际加密算法如RSA以及非对称加解密；
+
+### HTTP Request Method
+
+常见的请求方法有：
+- GET, get resource, params in URL;
+- POST, create resource, optional payload in body;
+- PUT, update resource, optional payload;
+- DELETE, delete resource(s)
+
+不常见的请求方法有：
+- HEAD, like GET, for getting header info(only header response);
+- TRACE, ...
+- OPTIONS, get allowed methods info for a resource.
+- PATCH, like PUT, but partial update a resource.
+
+### HTTP Status Code
+
+- 2xx, success, e.g. "200";
+- 3xx, redirect, new url should be returned in headers.
+- 4xx, client error
+  + 400 bad request
+  + 401 unauthorized
+  + 403 forbidden
+  + 404 not found
+  + 405 method not allowed
+- 5xx, server error
+  + 500 internal server error
+  + 501 not implemented
+  + 503 service unavailable (service down or overloaded)
+
+## Cookie 和 Session
+
+- Cookie 会在本地存放一些小的信息，比如 username, session id;
+- 在browser发请求时会带上 cookie 信息，服务器后台会查询session 信息并验证用户;
+- Session 在后端可能是类似 hashtable 存储，通过 session id 映射，可以得到用户信息以及 session 过期时间；
+- 现在都可以使用 token替换掉 cookie和session方案；
+

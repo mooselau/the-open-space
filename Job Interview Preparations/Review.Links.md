@@ -84,6 +84,29 @@ Links that are goods to go over before entering interviews:
     - Java算法题(Algorithms), see [link](https://www.zhihu.com/question/24964987)
         + Sorting, see [link](https://www.cnblogs.com/onepixel/articles/7674659.html)
         + 最大堆/最小堆, see [link](https://www.jianshu.com/p/62b651797ad8)
+        + PrefixTree
+
+* Database
+    - 数据库的读写分离
+    - 数据库的分库分表
+
+* Design Related
+    - 服务/App 的设计原则
+    - 设计模式(工厂模式和分类)
+
+* Security Related
+    - 非对称/对称加密的主流算法和大致原理
+        + Mac & Sign
+        + ISA, ECC, CBC, ECB, etc.
+    - 哈希算法设计(不重复/单向/固定长度)
+
+* Microservice Related
+    - Spring IoC 和 自动装配
+    - Spring 3级缓存
+    - 注册中心的核心
+    - RPC 框架的核心
+    - Tomcat 与 Netty 的区别
+    - \*IO / NIO
 
 * Google Related
     - TCP 三次握手 https://www.jianshu.com/p/beb803542e0c
