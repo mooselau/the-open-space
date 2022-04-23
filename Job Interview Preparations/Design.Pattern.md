@@ -1,5 +1,12 @@
 # Design Pattern / 设计模式
 
+* Design Patterns
+  - Singleton
+  - Factory
+  - Facade
+  - Proxy
+  - Decoration
+
 ## Factory Pattern 基础工厂模式
 
 典型用例: 

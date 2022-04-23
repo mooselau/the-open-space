@@ -14,11 +14,17 @@ Here contains all necessary knowledge parts for a job interview.
 |Java IO|[Click Here](./Java.IO.md)|
 |JVM / GC|[Click Here](./JVM.GC.md)|
 
-### DB & MIDDLEWARES
+### DB & MIDDLEWARES & Frameworks
 |Topic|Link|
 |-|-|
 |Database|[Click Here](./Database.General.md)|
 |Middleware|[Click Here](./Middleware.General.md)|
+
+### Frameworks
+|Topic|Link|
+|-|-|
+|SpringBoot|[Click Here](./SpringBoot.General.md)|
+|Framework|[Click Here](./Framework.General.md)|
 
 ### CICD & INFRASTRUCTURE
 |Topic|Link|
@@ -32,3 +38,9 @@ Here contains all necessary knowledge parts for a job interview.
 |Design Pattern|[Click Here](./Design.Pattern.md)|
 |Algorithms|[Click Here](./Algorithms.md)|
 |Additional|[Click Here](./Additional.General.md)|
+
+### EXTRA
+|Topic|Link|
+|-|-|
+|Review Links|[Click Here](./Review.Links.md)|
+|Security|[Click Here](./Security.General.md)|

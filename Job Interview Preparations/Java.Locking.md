@@ -2,6 +2,12 @@
 
 Java 常见的锁的机制，也是面试的重点。
 
+* Locks
+  - ReentrantLock & Condition, see [link1](https://blog.csdn.net/vernonzheng/article/details/8288251), [link2](https://www.jianshu.com/p/f207e85d0238)
+  - synchronized
+    + "Double-checked" locking issue, see [link](https://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html) 
+  - AQS, see [link](https://www.jianshu.com/p/da9d051dcc3d)
+
 ## Synchronized 同步锁
 
 Synchronized 是 Java 内置的最基本也是最常用的锁。

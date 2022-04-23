@@ -1,5 +1,13 @@
 # Java Threading / Java 多线程
 
+* Multi-threading
+  - Thread
+    + Daemon Thread
+    + Timer and TimerTask
+    + ThreadLocal, see [link](https://www.cnblogs.com/jasongj/p/8079718.html)
+  - ThreadPool
+    + ThreadPoolSize, see [link](https://mp.weixin.qq.com/s/RcsGOUtWQKO7w2BZNb8NzQ)
+
 ## Thread 线程
 
 __Thread Status 线程状态__

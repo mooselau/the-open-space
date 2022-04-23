@@ -1,5 +1,13 @@
 # JVM / GC
 
+* JVM and JMM
+  - JVM structure
+  - JMM concept, see [link](https://blog.csdn.net/javazejian/article/details/72772461)
+* GC
+  - GC Root, see [link](https://www.dynatrace.com/resources/ebooks/javabook/how-garbage-collection-works/)
+  - Parallel GC, CMS, see [link](http://www.importnew.com/1993.html)
+  - G1GC, see [link](https://www.oracle.com/technetwork/tutorials/tutorials-1876574.html)
+
 ## JVM Java虚拟机
 
 ```text
@@ -18,6 +26,8 @@
 
 - JVM 结构
   + JVM 参数 -Xms 最小内存，-Xmx 最大内存，-Xx: +UseConcurrentMarkSweepGC 使用 CMS GC
+
+>更多解释可以参考[Java永久区的简单理解](https://www.jianshu.com/p/589811d61d11)
 
 ### JMM Java Memory Model Java 内存模型
 

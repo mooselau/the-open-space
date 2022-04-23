@@ -2,6 +2,8 @@
 
 SpringBoot 本身可以考察的内容比较多，但由于它只是 Java 成熟的框架，另外很多大公司都会基于它进行包装，所以主要还是以了解和学习为主，不建议八股文。
 
+>推荐框架源码阅读参考 -- [芋艿源码主页](https://www.iocoder.cn/)
+
 ## IoC 容器
 
 __BeanFactory & ApplicationContext__
@@ -63,3 +65,5 @@ Spring在运行过程中会根据是否是 接口类 来判断使用哪一种动
 ### @Transactional()
 
 用来开启数据库事务的注解，主要作用是利用代理去除了：建立数据库连接，开启事务，提交事务，关闭连接等代码。
+
+>更多深度分析，可以参考 [@Transactional In-Depth](https://www.marcobehler.com/guides/spring-transaction-management-transactional-in-depth)

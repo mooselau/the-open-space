@@ -1,5 +1,12 @@
 # Java Collection / Java 集合类
 
+* Data Type
+  - Atomic related type
+    + Thread-safe and CAS
+  - Hashtable, HashMap and concurrentHashMap
+  - BlockingQueue and ConcurrentLinkedQueue
+  - Binary Search Tree
+
 - Q: Java 中 == 与 equals？
 - A: "==" 用来比较原始数据的值，和对象数据的内存地址 Object References，equals 可以用来比较对象的值，一般对于自定义对象，都是十分建议重写 equals() 和 hashcode() 方法的；
   + 自定义对象在使用 集合类的使用，尤其是 Hashtable 这种集合类，hashcode 会被用来查询 Bucket，之后会通过 equals() 来判断是否和 Bucket 内部的元素重复，不重复才会放到集合中;
@@ -55,6 +62,8 @@ __Set__
 - Hashmap 快但是非线程安全，Hashtable 慢但是线程安全；
   + Hashmap 和 Hashtable 查找最快 O(1) -- 即 hash() 之后的bucket 直接就是元素，最慢情况下，Hashtable 的bucket 中是长链表需要遍历，这时候是 O(n)，但是 Hashmap 在链表转换成 红黑树之后，可以达到 O(logn);
   
+>更多细节，可以参考[HashMap 的实现原理](www.jianshu.com/p/c561bab28e19)
+
 __ConcurrentHashmap__
 
 - CHM 也是线程安全的，在 JDK 1.8 之前，使用 segment 和 ReentrantLock 实现 分段锁；
@@ -192,5 +201,4 @@ public class TreeNode {
 ## Atomic 类型
 
 - 最核心的就是 CompareAndSet() 方法，底层是使用 unsafe.compareAndSwap();
-
 

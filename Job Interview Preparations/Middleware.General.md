@@ -1,5 +1,11 @@
 # Middleware General 中间件
 
+* Java Popular Modules
+  - Zookeeper
+  - Redis
+  - Message Queue, see [link](https://blog.csdn.net/maihilton/article/details/80037824?from=singlemessage&isappinstalled=0)
+  - Lucene & ElasticSearch
+
 主要整理一些常用的中间件的资料。
 
 使用消息队列的好处是：异步，解耦，削峰。异步处理，可以提高处理效率；解耦，可以帮助提高开发效率，使得项目独立，减轻依赖；削峰，可以在大流量的时候进行消息缓冲，减轻处理压力，保护服务器的处理资源；
@@ -132,3 +138,5 @@ __消息补偿__
 - 为了避免被丢弃，__需要配置 DLQ__，来确保消息不回丢失；
   + 在配置了 DLQ 的基础上，可以设置定时任务，__周期性地消费 DLQ 的消息，可以选择重复投递，也可以转人工干预__；
 - 在没有配置 DLQ 的情况下，可以考虑对进入消息的业务记录 __设置新的状态属性__，这样一旦消费失败同时消息丢失，数据库记录不会变化，这样 __长时间没有被推进的业务记录可以被捞起__，然后 __周期性进行补偿投递或者人工处理__；
+
+>更多细节，可以参考[芋艿源码 -- SpringBoot RabbitMQ 系列](https://www.iocoder.cn/Spring-Boot/RabbitMQ/)

@@ -1,5 +1,12 @@
 # Java General / Java 综合
 
+* Java Core
+  - Reflection
+  - Other
+    + Java Delegation, Classloader, see[link](https://www.cnblogs.com/wxd0108/p/6681618.html)
+    + WeakReference, see [link](https://mp.weixin.qq.com/s/TyM-zD2Irxk_BzS_D6I0KA)
+    + Java8 Stream Operations [link](https://www.baeldung.com/java-8-streams-introduction)
+
 ## Java Characteristics
 
 __Encapsulation 封装__
