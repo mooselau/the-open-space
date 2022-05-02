@@ -94,4 +94,32 @@ __default implementation 接口默认实现__
 - 通过反射，可以基本得到所有需要的 class 类信息，常用的方法有 class.forName() 用来获得类，Method.invoke() 用来调用方法；
 - 除此以外，还可以获得修饰符，以及注解等等；
 - 使用反射可以逃避范型检查；
-- 
+
+### Java Generic Type 范型和反射
+
+常见的范型使用 - 对象范型
+
+```java
+public class MyObject<E> {
+
+  public <E extends Object> void function(E e) {}
+
+}
+```
+- E 表示范型，任何对象；
+- 不过对于 function(), E 必须要是 Object的子类才能被处理和使用；
+
+常见的范型使用 - 类对象范型
+
+```java
+public class MyObject<E> {
+
+  public <E extends Object> void function(Class<E> clazz) {}
+
+}
+```
+- 同上，E表示任何对象；
+- 不过对于 function()，参数是 E的类对象，可以对 类对象进行操作，包括获取 类对象的 各种参数，方法并进行处理和调用；
+  + 比如常见的，可以在其中使用 clazz.getConstructor(String.class).newInstance("param");
+  + 这种做法就是常见的，利用反射进行 对象实例化；
+  
