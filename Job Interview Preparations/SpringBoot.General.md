@@ -519,3 +519,7 @@ public String[] selectImports(AnnotationMetadata annotationMetadata) {
     }
 }
 ```
+
+## References 参考链接
+
+[SpringBoot自动装配基础 - @Component、@ComponentScan、@Enable 解析 - 简书](https://www.jianshu.com/p/d3aebc7af3d0)

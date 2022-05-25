@@ -244,15 +244,10 @@ public abstract class ClassLoader {
 双亲委派模型对于一些特殊情况就非常不适用，这时候就需要 违背 双亲委派模型来实现。
 
 - 当需要定义同名类实现自定义功能的时候，往往因为父类加载器提前加载了同名类，而导致自身的类加载失败
-
-如果可以实现自身的类加载器，都先加载自身的类，失败的情况下，再去正常走 双亲委派加载，就没问题了。
-
+  + 如果可以实现自身的类加载器，都先加载自身的类，失败的情况下，再去正常走 双亲委派加载，就没问题了。
 - 当需要实现目前很多 IDE 的热插拔功能的时候，需要在服务运行过程中实现重新加载，而委派模型只能在启动的时候加载
-
-只有实现自定义的类加载器，才可以在运行过程中不断刷新 .class 字节码并重新加载类。
-
+  + 只有实现自定义的类加载器，才可以在运行过程中不断刷新 .class 字节码并重新加载类。
 - 当需要通过 SPI 调用第三方库的时候，比如在项目启动的时候和 MySQL 建立连接
+  + 由于在系统启动的时候就会通过 父类加载器 对数据库连接进行加载，但是 MySQL 的驱动在第三方的类库中，往往出现在 classpath下面，所以 在 正常双亲委派到 Bootstrap Classloader 进行加载 Driver 的时候，再去实现新的 ThreadContextClassLoader 来指定加载特定的 classpath 下的 第三方驱动，而不是让 bootstrap classloader 加载 (这样反而会由于在核心类库找不到而加载失败)。
 
-由于在系统启动的时候就会通过 父类加载器 对数据库连接进行加载，但是 MySQL 的驱动在第三方的类库中，往往出现在 classpath下面，所以 在 正常双亲委派到 Bootstrap Classloader 进行加载 Driver 的时候，再去实现新的 ThreadContextClassLoader 来指定加载特定的 classpath 下的 第三方驱动，而不是让 bootstrap classloader 加载 (这样反而会由于在核心类库找不到而加载失败)。
-
-更多分析可以参考链接[双亲委派模式](https://www.jianshu.com/p/5e0441cd2d4c)。
+更多分析可以参考链接[Java Service Provider Interface - Baeldung](https://www.baeldung.com/java-spi#spi-samples-in-the-java-ecosystem), [双亲委派模式](https://www.jianshu.com/p/5e0441cd2d4c)。
