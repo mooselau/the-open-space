@@ -45,3 +45,12 @@ git commit
 
 For original answer, please check [Stack Overflow](https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit
 https://git-scm.com/docs/git-revert)
+
+# 4 Git Alias
+
+```sh
+# have shortcut "git s" for "git status"
+$ git config --global alias.s status
+```
+
+refer to https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases for details.
